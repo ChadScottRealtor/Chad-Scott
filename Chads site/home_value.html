@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html>
+<title>Corona Realtor</title>
+<meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <link rel="apple-touch-icon" sizes="57x57" href="favicons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="favicons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="favicons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="favicons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="favicons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="favicons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="favicons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="favicons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="favicons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="favicons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Rock+Salt" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+<body>
+<!-- Navbar (sit on top) -->
+  <ul class="w3-navbar w3-white w3-wide w3-padding-8 w3-card-2" style="">
+    <li>
+      <a href="index.html" class="w3-margin-left"><img style="height: 40px;" src="images/logo2.png"/><b> CHAD</b> Scott</a>
+    </li>
+    <!-- Float links to the right. Hide them on small screens -->
+    <li class="w3-right w3-hide-small">
+      <a href="index.html" class="w3-left">Home</a>
+    </li>
+  </ul>
+
+<header style="background: lightgrey; padding: 2%; border-bottom: 7px solid teal;">
+  <h1 style="color: white;">YOUR HOME'S WORTH</h1>
+</header>
+<!-- Page content -->
+<div class="" style="max-width: 1550px; margin: auto auto; margin-top: 200px; height: 800px; background: white; ">
+  <div class="col-md-6">
+    <div class="contact_div" style="background-color: white; min-width: 400px; margin: 0px; height: 600px; ">
+      <div class="w3-container w3-padding-32" id="contact">
+        <h2 class="w3-border-bottom  w3-padding-12" >CONTACT</h2>
+        <p>Lets get in touch and talk about your dream home.</p>
+        <form action="action_page.php" method="post" name="emailform" target="_blank">
+          <input class="w3-input" type="text" placeholder="Name" required name="name">
+          <input class="w3-input w3-section" type="text" placeholder="Email" required name="email">
+          <input class="w3-input w3-section" type="text" placeholder="Subject" required name="subject">
+          <input class="w3-input w3-section" type="text" placeholder="Comment" required name="comment">
+          <button class="w3-btn w3-section" type="submit" name="submit" style="position: absolute;" onclick="document.getElementById('thankYouText').innerHTML = ('Thank you for the submission! I will contact you regarding your inquiry as soon as possible.');">
+              <i class="fa fa-paper-plane"></i> SEND MESSAGE
+            </button>
+        </form>
+      </div>
+    </div>
+    <h3 id="thankYouText"></h3>
+
+  </div>
+  <script language="JavaScript">
+  // Code for validating the form
+  var frmvalidator  = new Validator("emailform");
+  frmvalidator.addValidation("name","req","Please provide your name");
+  frmvalidator.addValidation("email","req","Please provide your email");
+  frmvalidator.addValidation("email","email","Please enter a valid email address");
+  document.getElementById('thankYouText').innerHTML = "Thank you for the submission! I will contact you regarding your inquiry as soon as possible.";
+  </script>
+  <div class="col-md-6" style="padding-top: 5%; height: 600px; ">
+    <h1>How much is your home Worth?</h1>
+    <p style="color: teal; margin-bottom: 6%;">Call or write me today to get your free comparative home and market evaluation</p>
+    <p style="text-align: left; font-weight: bold;">When selling your home, an appraisal of the property's value is an important step in coming up with a listing price. This is one of the services your real estate agent offers. The agent looks at the price of properties in your neighborhood that sold within the past year or two and that are similar to your home in terms of size, features and condition. These properties are called "comparables." Then the agent adds or subtracts value to your home when considering features that might not be found in the comparables; for instance, a property fence adds value to your home's worth, but peeling exterior paint usually subtracts from it.</p>
+      <div class="col-md-3" style="text-align: center;">
+        <img style = "border-radius: 100%; margin: auto auto;"src="images/contact_photo.jpg"/>
+      </div>
+      <div class="col-md-9" >
+        <h2 style="text-align: center;"><span style="font-weight: bolder;">CHAD</span> <span style="color: teal">SCOTT</span></h2>
+        <h3 style="text-align: center;"><a class="bcorr-content"><a class="tel" href="tel:951-496-8890" itemprop="telephone"><i class="fa fa-phone"></i>  951-496-8890 </a><br><br><a class="email" href="mailto:chaddrbox@yahoo.com" itemprop="email"><i class="fa fa-envelope"></i>  EMAIL ME </a>
+      </div>
+  </div>
+</div>
+<!-- Google Map -->
+<!-- Footer -->
+<!-- Add Google Maps -->
+<!--
+To use this code on your website, get a free API key from Google.
+Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
+-->
+<footer class="footer" style = "min-height: 22em; height: 100%; background: lightgrey; padding: 20px;">
+
+    <div class="col-md-4" style="float: left;">
+      <img alt="" style="text-align: left;"src="images/kw-logo.png"/>
+      <p style="font-size: 10px; padding-top: 30px; color: grey;">Keller Williams Realty, Inc. is a real estate franchise company. Each Keller Williams office is independently owned and operated. Keller Williams Realty, Inc. is an Equal Opportunity Employer and supports the Fair Housing Act.</p>
+        <img alt="" src="images/realtor-logo.png" style="width: 40px; height: auto; float: center;"/>
+        <img alt="" src="images/equalhousing.png" style="width: 40px; height: auto; float: center;"/>
+    </div>
+    <div class="col-md-4" style="text-align: center;">
+      <h3><span style="font-weight: bolder">CHAD</span> <span style="color: teal;">SCOTT</span></h3>
+      <a class="tel" href="tel:951-496-8890" itemprop="telephone">951-496-8890 </a>| <a class="email" href="mailto:chadscottrealtor@gmail.com" itemprop="email"> EMAIL ME </a>
+      <br>
+      <br>
+      <p>Keller Williams Realty<br>
+      4160 Temescal Canyon Road #500<br>
+      Corona, CA 92883</p>
+      <br>
+
+
+      <p>Powered by <a href="http://www.JohnCossack.com" title="W3.CSS" target="_blank" class="w3-hover-text-green"><br/><img class="webbyjohnlogo" src="images/webbyjohn.png"/></a></p>
+    </div>
+
+    <div class="col-md-4 social" style=" text-align: center;">
+      <h4 style="color: grey;">Follow me on social media!</h4>
+      <a href="https://www.facebook.com/yourhomesoldbychad"><i class="fa fa-facebook-square social-links" aria-hidden="true"></i></a><a href="https://twitter.com/homessoldbychad"><i class="fa fa-twitter-square social-links" aria-hidden="true"></a></i><a href="https://www.instagram.com/yourhomesoldbychad/"><i class="fa fa-instagram social-links" aria-hidden="true"></i></a><i class="fa fa-yelp social-links" aria-hidden="true"></i>
+    </div>
+
+
+</footer>
+</body>
+
+</html>

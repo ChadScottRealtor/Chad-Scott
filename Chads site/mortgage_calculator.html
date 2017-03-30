@@ -1,0 +1,211 @@
+
+<!DOCTYPE html>
+<html>
+<title>Corona Realtor</title>
+<meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <link rel="apple-touch-icon" sizes="57x57" href="favicons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="favicons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="favicons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="favicons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="favicons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="favicons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="favicons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="favicons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="favicons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="favicons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Rock+Salt" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+<body style="background: lightgrey;">
+<!-- Navbar (sit on top) -->
+<div class="w3-top" >
+  <ul class="w3-navbar w3-white w3-wide w3-padding-8 w3-card-2">
+    <li>
+      <a href="index.html" class="w3-margin-left"><img style="height: 40px;" src="images/logo2.png"/><b> CHAD</b> Scott</a>
+    </li>
+    <!-- Float links to the right. Hide them on small screens -->
+    <li class="w3-right w3-hide-small">
+      <a href="#projects" class="w3-left">Homes</a>
+      <a href="#about" class="w3-left">About</a>
+      <a href="#contact" class="w3-left w3-margin-right">Contact</a>
+    </li>
+  </ul>
+</div>
+
+<!-- Page content -->
+<div class="w3-display-container w3-content w3-wide" style="max-width:100%; min-height: 1100px; padding: 10%;" id="headerbackground">
+  <h1>MORTGAGE CALCULATOR</h1>
+  <div class="col-md-6" style="background: transparent; height: 780px; padding: 5%; margin-bottom: 200px;">
+    <div class="smpc-div" style="padding: 10%">
+        <h2 class="w3-border-bottom  w3-padding-12" >MORTGAGE CALCULATOR</h2>
+        <p>How much home can you afford in today's market?</p>
+      <form name=mortgagecalc method=POST>
+      <p>Price Of Home ($)
+      <input type=text onkeypress="return validNumber(event)" name=loan size=10> <span class="smpc-error" id="loanError"></span></p>
+      <p>Loan Term (years)
+      <input type=text onkeypress="return validNumber(event)" name=years size=10> <span class="smpc-error" id="yearsError"></span></p>
+      <p>Interest Rate (%)
+      <input type=text onkeypress="return validNumber(event)" name=rate size=10> <span class="smpc-error" id="rateError"></span></p>
+      <input type=button onClick="return myPayment()" value=Calculate>  <input type=button onClick="return myPaymentReset()" value=Reset>
+      </form>
+      <small>Instructions: Enter numbers and decimal points. No commas or other characters.</small>
+      <p class="smpc-monthlypayment" id="monthlyPayment"> </p>
+      <p class="smpc-friendlyreminder" id="friendlyReminder">This is your principal + interest payment, or in other words, what you send to the bank each month. But remember, you will also have to budget for homeowners insurance, real estate taxes, and if you are unable to afford a 20% down payment, Private Mortgage Insurance (PMI). These additional costs could increase your monthly outlay by as much 50%, sometimes more.</p>
+      </div>
+  </div>
+
+  <script>
+  function validNumber(fieldinput){
+var unicode=fieldinput.charCode? fieldinput.charCode : fieldinput.keyCode;
+if ((unicode!=8) && (unicode!=46)) { //if the key isn't the backspace key (which we should allow)
+if (unicode<48||unicode>57) //if not a number
+return false; //disable key press
+}
+}
+
+function myPayment()
+{
+// Reset error messages to blank
+document.getElementById('loanError').innerHTML = '';
+document.getElementById('yearsError').innerHTML = '';
+document.getElementById('rateError').innerHTML = '';
+
+// Form validation checking
+if ((document.mortgagecalc.loan.value === null) || (document.mortgagecalc.loan.value.length === 0) || (isNaN(document.mortgagecalc.loan.value) === true))
+{
+document.getElementById('monthlyPayment').innerHTML = 'Please enter the missing information.';
+document.getElementById('loanError').innerHTML = 'Numeric value required. Example: 165000';
+} else if ((document.mortgagecalc.years.value === null) || (document.mortgagecalc.years.value.length === 0) || (isNaN(document.mortgagecalc.years.value) === true))
+{
+document.getElementById('monthlyPayment').innerHTML = 'Please enter the missing information.';
+document.getElementById('yearsError').innerHTML = 'Numeric value required. Example: 30';
+} else if ((document.mortgagecalc.rate.value === null) || (document.mortgagecalc.rate.value.length === 0) || (isNaN(document.mortgagecalc.rate.value) === true))
+{
+document.getElementById('monthlyPayment').innerHTML = 'Please enter the missing information.';
+document.getElementById('rateError').innerHTML = 'Numeric value required. Example: 5.25';
+} else
+{
+// Set variables from form data
+var loanprincipal = document.mortgagecalc.loan.value;
+var months = document.mortgagecalc.years.value * 12;
+var interest = document.mortgagecalc.rate.value / 1200;
+
+// Calculate mortgage payment and display result
+document.getElementById('monthlyPayment').innerHTML = 'Your monthly mortgage payment will be ' + '\n$' + (loanprincipal * interest / (1 - (Math.pow(1/(1 + interest), months)))).toFixed(2);
+document.getElementById('friendlyReminder').style.display = 'block';
+}
+
+// payment = principle * monthly interest/(1 - (1/(1+MonthlyInterest)*Months))
+
+}
+
+function myPaymentReset()
+{
+// Reset everything to default/null/blank
+document.getElementById('monthlyPayment').innerHTML = 'Values reset';
+document.getElementById('friendlyReminder').style.display = 'none';
+document.getElementById('loanError').innerHTML = '';
+document.getElementById('yearsError').innerHTML = '';
+document.getElementById('rateError').innerHTML = '';
+document.mortgagecalc.loan.value = null;
+document.mortgagecalc.years.value = null;
+document.mortgagecalc.rate.value = null;
+}
+  </script>
+
+  <div class="col-md-6" style="background: transparent; height: 800px; margin-bottom: 200px;">
+    <div class="contact_div" style="min-width: 400px; position: relative; left: -40px; background: white;">
+      <div class="w3-container w3-padding-32" id="contact">
+        <h2 class="w3-border-bottom  w3-padding-12" >CONTACT</h2>
+        <p>Lets get in touch and talk about your dream home.</p>
+        <form action="action_page.php" method="post" name="emailform" target="_blank">
+          <input class="w3-input" type="text" placeholder="Name" required name="name">
+          <input class="w3-input w3-section" type="text" placeholder="Email" required name="email">
+          <input class="w3-input w3-section" type="text" placeholder="Subject" required name="subject">
+          <input class="w3-input w3-section" type="text" placeholder="Comment" required name="comment">
+          <button class="w3-btn w3-section" type="submit" name="submit" style="position: absolute;" onclick="document.getElementById('thankYouText').innerHTML = ('Thank you for the submission! I will contact you regarding your inquiry as soon as possible.');">
+              <i class="fa fa-paper-plane"></i> SEND MESSAGE
+            </button>
+        </form>
+      </div>
+    </div>
+    <h3 id="thankYouText"></h3>
+
+  </div>
+  <script language="JavaScript">
+  // Code for validating the form
+  var frmvalidator  = new Validator("emailform");
+  frmvalidator.addValidation("name","req","Please provide your name");
+  frmvalidator.addValidation("email","req","Please provide your email");
+  frmvalidator.addValidation("email","email","Please enter a valid email address");
+  </script>
+</div>
+
+
+<!-- Google Map -->
+<!-- Footer -->
+<!-- Footer -->
+
+<footer class="footer" style = "; height: 100%; background: lightgrey; padding: 20px;">
+
+    <div class="col-md-4" style="float: left;">
+      <img alt="" style="text-align: left;"src="images/kw-logo.png"/>
+      <p style="font-size: 10px; padding-top: 30px; color: grey;">Keller Williams Realty, Inc. is a real estate franchise company. Each Keller Williams office is independently owned and operated. Keller Williams Realty, Inc. is an Equal Opportunity Employer and supports the Fair Housing Act.</p>
+        <img alt="" src="images/realtor-logo.png" style="width: 40px; height: auto; float: center;"/>
+        <img alt="" src="images/equalhousing.png" style="width: 40px; height: auto; float: center;"/>
+    </div>
+    <div class="col-md-4" style="text-align: center;">
+      <h3><span style="font-weight: bolder">CHAD</span> <span style="color: teal;">SCOTT</span></h3>
+      <a class="tel" href="tel:951-496-8890" itemprop="telephone">951-496-8890 </a>| <a class="email" href="mailto:chadscottrealtor@gmail.com" itemprop="email"> EMAIL ME </a>
+      <br>
+      <br>
+      <p>Keller Williams Realty<br>
+      4160 Temescal Canyon Road #500<br>
+      Corona, CA 92883</p>
+      <br>
+      <p>Powered by <a href="http://www.JohnCossack.com" title="W3.CSS" target="_blank" class="w3-hover-text-green"><br/><img class="webbyjohnlogo" src="images/webbyjohn.png"/></a></p>
+    </div>
+
+    <div class="col-md-4 social" style=" text-align: center;">
+      <h4 style="color: grey;">Follow me on social media!</h4>
+      <a href="https://www.facebook.com/yourhomesoldbychad"><i class="fa fa-facebook-square social-links" aria-hidden="true"></i></a><a href="https://twitter.com/homessoldbychad"><i class="fa fa-twitter-square social-links" aria-hidden="true"></a></i><a href="https://www.instagram.com/yourhomesoldbychad/"><i class="fa fa-instagram social-links" aria-hidden="true"></i></a><i class="fa fa-yelp social-links" aria-hidden="true"></i>
+    </div>
+
+
+</footer>
+
+<!-- Add Google Maps -->
+<!--
+To use this code on your website, get a free API key from Google.
+Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
+-->
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/57896401c9a9fefa79107c22/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+
+</body>
+</html>
